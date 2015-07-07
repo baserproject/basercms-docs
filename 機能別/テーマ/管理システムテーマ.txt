@@ -1,0 +1,41 @@
+#管理システムテーマ
+
+##概要
+
+* 管理システムのテーマを別のテーマに切り替える事ができる。
+* 管理システムのテンプレートをフロントテーマより上書きできる。
+
+
+##フロントテーマ上書き仕様
+
+Helper::webroot() により、フロントテーマにあればフロントテーマ用のパスを生成し、なければ、管理システムテーマを走査し、あれば、管理システムテーマ用のパスを生成する。
+
+
+##テンプレートファイル優先順位
+
+* /app/webroot/theme/theme_name/
+* /app/webroot/Themed/Theme_name/
+* /app/View/Themed/ThemeName/
+* /lib/Baser/View/Themed/ThemeName/
+* /app/webroot/theme/AdminThemeName/
+* /app/webroot/Themed/AdminThemeName/
+* /app/View/Themed/AdminThemeName/
+* /lib/Baser/View/Themed/AdminThemeName/
+* /app/webroot/
+* /app/View/
+* /lib/Baser/View/
+* /lib/Cake/View/
+* /lib/Cake/Console/Templates/skel/View/
+
+
+##管理システムテーマの初期配置場所
+
+* テンプレート配置場所・・・/lib/Baser/View/
+* アセットファイル配置場所・・・/lib/Baser/View/webroot/
+
+
+##管理システムテーマの変更
+
+管理システムのテーマは初期状態で設定されていない。  
+テーマフォルダ内に管理システムテーマを設置し、site_configs テーブルの、admin_theme のキーを変更する事で、管理システムのテーマを変更する事ができる。
+

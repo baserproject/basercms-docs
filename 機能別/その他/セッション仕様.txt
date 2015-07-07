@@ -1,0 +1,19 @@
+#セッション仕様
+
+##セッションタイムアウト
+
+* ブラウザを閉じた後の有効期限：１日  
+設定値名：session.cookie_lifetime
+
+- 放置した場合の有効期限：１日１回、100分の１の確率でセッションが切れる  
+ 	※ 切れた後、１回のアクセスは許容される様子  
+ 	session.gc_maxlifetime（判定を行うサイクル：秒）  
+ 	session.gc_probability（確率）
+
+
+##セッション設定書き換え
+
+セッション設定をサイトごとに書き換える為には、下記のファイルをコピーして設定を変更する事で対応できる
+
+/lib/Baser/Config/session.php → /app/Config/session.php
+

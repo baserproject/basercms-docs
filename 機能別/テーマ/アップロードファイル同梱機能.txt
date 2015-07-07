@@ -1,0 +1,16 @@
+#アップロードファイル同梱機能
+
+ブログのアイキャッチやアップローダーのファイル参照等、アップロードしたファイルは内部的に、BcUpload::uploadImage() を利用して読み出されるが、読み出しの際、/app/webroot/files/ だけでなく、/app/webroot/theme/theme-name/files/ を優先的に参照し存在すれば、そちらのパスを有効にする機能
+
+表示する際は、BcFormHelper::file() や、BlogHelper::eyeCatch() で利用する
+特定のURLで透過的に読み出すわけでなく、上記メソッド実行時に、参照パスを選択する方式とする
+
+BcAppHelper::webroot() にて対応済
+
+
+##既知の不具合
+
+実体ファイルは参照できるが、派生したサムネイル画像等は参照できない  
+
+* [BcUpload::uploadImage() で、テーマ内の files が参照できない](http://project.e-catchup.jp/issues/8997)
+

@@ -1,0 +1,26 @@
+#設定ファイル上書機能仕様
+
+##基本機能
+
+baserCMSの設定は、/lib/Baser/Config/setting.php に記述されているが、その設定を app 側より簡単に書き換える仕組。  
+必要な設定だけを /app/Config/setting.php に記述するだけで、自動的にマージされる。
+
+##記述例
+
+/app/Config/setting.php
+
+```
+$config = array(
+	'BcAuthPrefix' = array(
+		'mypage' => array(
+			'name'			=> 'マイページ',
+			'alias'			=> 'mypage',
+			'loginRedirect'	=> '/',
+			'loginTitle'	=> 'マイページログイン',
+			'userModel'		=> 'Member',
+			'loginAction'	=> '/mypage/users/login',
+			'toolbar'		=> true	
+		)
+	)
+);
+```

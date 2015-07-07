@@ -1,0 +1,6 @@
+#プラグイン同梱機能
+
+テーマ内にプラグインを有している場合、baserCMS側で認識し、プラグイン管理より管理する事ができる機能
+
+* 配置場所：/app/webroot/theme/theme-name/Plugin/
+* 優先順位：Baser < app < theme

@@ -1,0 +1,66 @@
+#プレフィックス認証仕様
+
+##基本仕様
+* 設定するだけでマイページなどの認証機能が実装できる仕組み
+* 指定したプレフィックス配下のURLに対して認証がかかる
+* 認証後のコンテンツは生成しない為、独自で実装する必要がある
+* テーブルは既存のusersテーブルを利用する方法と独自のテーブルを利用する方法がある
+* モデルクラスは既存のUserクラスを利用する方法と独自のクラスを利用する方法がある  
+	※ baserCMSのコアには、Userクラスを継承したMemberクラスが定義されているのでそれをapp側にコピーしてカスタマイズしてもよい
+
+##設定
+setting.php に設定を記述する
+
+###設定例
+app/Config/setting.php
+
+```php
+$config = array(
+	'BcAuthPrefix' => array(
+		// プレフィックス名
+		'mypage' => array(		
+			// 管理対象の名称
+			'name'				=> 'マイページ',
+			// プレフィックスのエイリアス
+			'alias'			=> 'mypage',	
+			// ログイン後のリダイレクトURL
+			'loginRedirect'	=> '/',		
+			// ログイン画面のタイトル
+			'loginTitle'		=> 'マイページログイン',
+			// 認証に利用するモデルクラス名
+			'userModel'		=> 'Member',
+			// ログイン画面のURL （/prefix/controller_name/login）
+			'loginAction'		=> '/mypage/users/login',
+			// ツールバーの利用
+			'toolbar'			=> true,		
+			// ログインユーザーの追加検索条件（CakePHPのconditionsの形式）
+			'userScope'		=> array()
+		)
+	)
+);
+```
+
+##フロント認証
+
+プレフィックスなしのURLにて認証を行いたい場合、プレフィックス名を「front」とする事で、公開側で認証情報を参照する事ができる。
+
+###設定例
+
+```
+$config = array(
+	// フロント（例）
+	'BcAuthPrefix' => array(
+		'front' => array(
+			'name'				=> 'フロント',
+			'loginRedirect'	=> '/',
+			'userModel'		=> 'User',
+			'loginAction'		=> '/users/login',
+			'toolbar'			=> true
+		)
+	)
+);
+```
+
+##ユーザーグループごとの設定
+
+プレフィックス認証を設定した場合、ユーザーグループの編集画面より、どの認証プレフィックスを利用するか選択できるようになるので、対象の認証プレフィックスを選択すると、そのユーザーグループに対し、設定が有効となる。

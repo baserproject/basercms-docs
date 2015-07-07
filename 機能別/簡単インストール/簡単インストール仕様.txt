@@ -1,0 +1,69 @@
+#簡単インストール仕様
+コンソールにて、１コマンドでbaserCMSをインストールする機能。
+
+## インストール
+
+```
+cake bc_manager install \
+	"http://site.url" \			# サイトURL
+	"dbtype" \						# DB種類
+	"username" \					# 管理システムログイン名
+	"password" \					# 管理システムログインパスワード
+	"email" \						# 管理者メールアドレス
+	-host "hostname" \			# DBサーバホスト名
+	-database "dbname" \			# DB名
+	-login "dbuser" \				# DBログイン名
+	-password "dbpassword" \		# DBパスワード
+	-prefix "prefix_" \			# DBテーブルプレフィックス
+	-port "portnumber" \			# DBサーバポート番号
+	-smarturl "true or false" \	# スマートURL
+	-baseurl "/" \				# ベースとなるURL（サブフォルダの有無）
+	-data "nada-icons.default"	# 初期データのパターン
+```
+
+##リセット
+
+baserCMSのリセットは、root ユーザーで行う  
+※ Apacheが生成した一時ファイルをSSHのユーザーで削除できない場合がある為
+
+```
+cake bc_manager reset
+```
+
+##コマンド例
+
+適宜、環境に合わせてパス等を書き換える事  
+※ PHP 経由で cake.php を実行する場合
+
+###インストール
+
+```
+/Applications/MAMP/bin/php/php5.5.10/bin/php /Users/ryuring/Documents/Projects/basercms/app/Console/cake.php \
+	-app /Users/ryuring/Documents/Projects/basercms/app \
+	bc_manager install \
+	"http://basercms.localhost:8888" \
+	"mysql" \
+	"admin" \
+	"demodemo" \
+	"info@basercms.net" \
+	--host "localhost" \
+	--database "basercms" \
+	--login "dbuser" \
+	--password "dbpassword" \
+	--prefix "mysite_" \
+	--port "3306" \
+	--smarturl "true" \
+	--baseurl "/" \
+	--data "nada-icons.default" 
+```
+
+
+###リセット
+
+```
+/Applications/MAMP/bin/php/php5.5.10/bin/php /Users/ryuring/Documents/Projects/basercms/app/Console/cake.php  \
+	-app /Users/ryuring/Documents/Projects/basercms/app \
+	bc_manager reset
+```
+
+

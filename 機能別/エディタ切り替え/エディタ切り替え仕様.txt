@@ -1,0 +1,64 @@
+#エディタ切り替え仕様
+
+##基本仕様
+
+標準のWYSIWYGエディタをプラグインから別のエディタに切り替える事ができる。
+
+##ヘルパの作成
+
+* 下記の場所にヘルパを作成します。  
+	`/PluginName/View/Helper/HelperNameHelper.php`
+
+* editorメソッド定義  
+	ヘルパ内には、editorメソッドを定義し、エディタを出力するコードを記述します。  
+	その際、Javascript等により $fieldName をベースとしたフォームコントロールに入力値が格納されるように実装します。
+
+###コード例
+```php
+class SampleEditorHelper extends AppHelper {
+
+	public $helpers = array('BcForm');
+	
+	public function editor($fieldName, $options) {
+		
+		$editor = $this->build($fieldName, $options);
+		$textarea = $this->BcForm->textarea($fieldName);
+		return $editor . $textarea;
+		
+	}
+	
+	protected function build($fieldName, $options = array()) {
+		// エディタ生成処理
+		return $editor;
+	}
+
+}
+```
+
+##設定ファイル設置
+
+設定ファイルを設定し、エディタ選択リストに作成したエディタを定義します。
+`/PluginName/Config/configname.php`
+
+###コード例
+```
+$config = array('BcApp' => array(
+	'editors'	=> array('PluginName.HelperName' => 'EditorName')
+));
+```
+
+※ HelperNameには末尾のHelperは含めないようにします。  
+※ EditorNameは選択リストに表示される名称です。
+
+
+##起動ファイル設置
+
+設定ファイルを読み込む為のプログラムを記述します。  
+`/PluginName/Config/bootstrap.php`
+
+###コード例
+```
+Configure::load('PluginName.configname', 'baser');
+```
+
+これで、システム設定よりエディターを切り替える事ができます。
