@@ -1,0 +1,13 @@
+# エディタCSS機能
+CKEditor のエディタ内に適用できるCSSをテーマ内に設置する事ができる機能。
+
+## 基本技術仕様
+### エディタ用CSSの追加
+CKEditorでは、エディタに適用するCSSを追加するには次のコードを記述するので、`BcCkeditorHelper::_build()` で実装する。
+
+```
+CKEDITOR.config.contentsCss = '/mycss.css';
+```
+
+## 前提条件
+* テーマ内に editor.css というファイルがあれば読み込む仕様にする
