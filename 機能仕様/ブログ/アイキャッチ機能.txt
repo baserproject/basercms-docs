@@ -1,0 +1,14 @@
+# アイキャッチ機能
+ブログの各記事のアイキャッチとして画像を登録できる機能。
+
+* ブログコンテンツごとにサイズを設定できる。
+* BlogHelper を利用して任意の場所にアイキャッチを表示できる
+
+## 保存先
+`/app/webroot/files/blog/blog_posts/` 配下に日付フォルダ別に保存する。
+
+```
+/files/blog/blog_posts/{ブログコンテンツ名}/{年}/{月}/eye_catch_{ID8桁}.{拡張子}
+（例）
+/files/blog/blog_posts/news/2013/03/eye_catch_00000001.jpg
+```
