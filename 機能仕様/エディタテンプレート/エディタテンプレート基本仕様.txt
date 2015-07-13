@@ -1,0 +1,24 @@
+# エディタテンプレート機能
+baserCMSの初期状態で利用しているCKEditorが持つテンプレート機能のテンプレートを管理システム内で、新規追加、編集ができる機能。
+
+
+## 基本技術仕様
+
+### テンプレート設定ファイルの追加
+CKEditorでは、テンプレート設定を定義するファイルを追加するには次のコードを記述するので、`BcCkeditorHelper::_build()` で実装する
+
+```
+CKEDITOR.config.templates_files = [ '/mytemplates.js' ];
+```
+
+### テンプレート設定ファイルの生成
+テンプレート設定ファイルは、 `EditorTemplatesController::admin_js()` で動的に生成する
+
+## 管理システム機能
+エディタテンプレートの一覧・登録・編集・削除ができる。
+
+### アイコン仕様
+管理システムよりアイコンを登録・変更できる仕様とする為、アイコンは、`/app/webroot/files/editor/` に保存する。
+
+初期状態で、３つのエディタテンプレートを提供する為、 `/lib/Baser/webroot/img/admi/ckeditor/` 内に設置したアイコンファイルを、インストール時に、`/app/webroot/files/` にコピーする。
+
