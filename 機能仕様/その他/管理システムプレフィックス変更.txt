@@ -1,0 +1,15 @@
+# 管理システムプレフィックス変更
+セキュリティを高める為、管理システムのURLを変更できる。
+
+## 変更方法
+`/app/Config/core.php` の `Routing.prefixes` の設定値を変更する。
+
+```
+（例）
+Configure::write('Routing.prefixes', array('admin'));
+　↓
+Configure::write('Routing.prefixes', array('abc'));
+```
+## 管理システム改修時の注意事項
+
+* 管理システム内において、関数を利用し、配列で公開ページへのリンクを指定する場合、'admin' => false を入れる必要がある。
